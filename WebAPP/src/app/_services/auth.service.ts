@@ -13,7 +13,7 @@ constructor(private http: HttpClient) { }
   baseUrl = 'http://localhost:5000/api/auth/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
-  currentUser: User;
+  //currentUser: User;
 
   // tslint:disable-next-line: typedef
   login(model: any)
@@ -43,7 +43,7 @@ constructor(private http: HttpClient) { }
     this.decodedToken = null;
 
     localStorage.removeItem('user');
-    this.currentUser = null;
+    //this.currentUser = null;
   }
 
 }
