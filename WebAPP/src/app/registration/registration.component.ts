@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../_services/auth.service';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-registration',
@@ -8,21 +10,33 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegistrationComponent implements OnInit {
 
+  @Output() cancelRegister = new EventEmitter();
+
+  model: any = {};
   users: any;
-  constructor( private http: HttpClient) { }
+ // tslint:disable-next-line: no-trailing-whitespace
+ 
+  constructor( private authservice: AuthService, private alertify: AlertifyService) { }
 
+  // tslint:disable-next-line: typedef
   ngOnInit() {
-    this.getUsers();
+    
   }
 
-  getUsers()
+  // tslint:disable-next-line: typedef
+  register()
   {
-    return this.http.get('http://localhost:5000/api/values').subscribe( res => {
-      this.users = res;
-
+    this.authservice.register(this.model).subscribe(next => {
+      this.alertify.success('Logged in successfully');
     }, error => {
-     console.log(error);
-    }
-    );
+      this.alertify.error(error);
+    });
   }
+
+  // tslint:disable-next-line: typedef
+  cancel()
+  {
+    this.cancelRegister.emit(false);
+  }
+
 }

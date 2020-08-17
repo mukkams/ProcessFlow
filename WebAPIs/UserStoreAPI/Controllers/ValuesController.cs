@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ using UserStoreAPI.Data;
 
 namespace UserStoreAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -20,7 +22,7 @@ namespace UserStoreAPI.Controllers
         }
 
         // GET api/values
-        [HttpGet]
+        [HttpGet]        
         public async Task<IActionResult> GetUsers()
         {
             var users=  await _dataContext.Users.ToListAsync();            
@@ -29,6 +31,7 @@ namespace UserStoreAPI.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetUser(string id)
         {
             var user= await _dataContext.Users.FirstOrDefaultAsync ( u => u.Id == Guid.Parse(id));

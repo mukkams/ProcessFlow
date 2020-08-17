@@ -44,7 +44,7 @@ namespace UserStoreAPI.Controllers
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDTO loginDTO)
-        {
+        {           
             var loggedInUser = await this._repo.Login(loginDTO.Username.ToLower(), loginDTO.Password);
 
             if (loggedInUser == null)
