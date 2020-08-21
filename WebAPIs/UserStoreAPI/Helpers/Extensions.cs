@@ -25,7 +25,7 @@ namespace UserStoreAPI.Helpers
             response.Headers.Add("Pagination", JsonConvert.SerializeObject(paginationHeader,camelCaseFormatter));
             response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
         }
-
+*/
         public static int CalculateAge(this DateTime dateTime)
         {
             int diff=DateTime.Now.Year-dateTime.Year;
@@ -33,6 +33,6 @@ namespace UserStoreAPI.Helpers
 
             return diff;
         }
-        */
+
     }
 }

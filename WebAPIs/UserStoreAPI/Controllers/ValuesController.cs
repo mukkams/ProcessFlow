@@ -22,19 +22,19 @@ namespace UserStoreAPI.Controllers
         }
 
         // GET api/values
-        [HttpGet]        
+        [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var users=  await _dataContext.Users.ToListAsync();            
+            var users=  await _dataContext.Users.ToListAsync();
             return Ok(users);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public async Task<IActionResult> GetUser(string id)
+        public async Task<IActionResult> GetUser(int id)
         {
-            var user= await _dataContext.Users.FirstOrDefaultAsync ( u => u.Id == Guid.Parse(id));
+            var user= await _dataContext.Users.FirstOrDefaultAsync ( u => u.Id == id);
             return Ok(user);
         }
         // POST api/values

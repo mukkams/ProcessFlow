@@ -20,7 +20,7 @@ export class RegistrationComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
-    
+
   }
 
   // tslint:disable-next-line: typedef
