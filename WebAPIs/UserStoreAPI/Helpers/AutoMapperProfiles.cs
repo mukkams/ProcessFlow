@@ -29,6 +29,7 @@ namespace UserStoreAPI.Helpers
             });
 
             CreateMap<Photo, PhotosForDetailedDTO>();
+            CreateMap<UserForUpdateDTO, User>();
         }
     }
 }
